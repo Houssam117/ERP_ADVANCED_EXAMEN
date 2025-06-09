@@ -1,0 +1,90 @@
+<mvc:View
+    controllerName="com.sap.mov.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+    <m:Page
+        id="appPage"
+        title="{i18n>appTitle}"
+        showNavButton="false"
+        busy="{appView>/busy}"
+        busyIndicatorDelay="{appView>/delay}">
+        <m:headerContent>
+            <m:Button
+                id="createMovementButton"
+                icon="sap-icon://add"
+                type="Transparent"
+                press="onCreateMovementPress"/>
+        </m:headerContent>
+        <m:content>
+            <m:Toolbar id="filterToolbar">
+                <m:Title text="{i18n>filterTitle}"/>
+                <m:SegmentedButton id="movTypeFilter" selectionChange="onFilterChange">
+                    <m:items>
+                        <m:SegmentedButtonItem text="{i18n>allMovTypes}" key="All"/>
+                        <m:SegmentedButtonItem text="{i18n>typeA}" key="Type A"/>
+                        <m:SegmentedButtonItem text="{i18n>typeB}" key="Type B"/>
+                    </m:items>
+                </m:SegmentedButton>
+                <m:ToolbarSpacer/>
+                <m:SearchField id="searchField" liveChange="onSearch" width="auto"/>
+            </m:Toolbar>
+
+            <m:Table
+                id="movementTable"
+                items="{
+                    path: '/MovementSet',
+                    sorter: {
+                        path: 'CreatedAt',
+                        descending: true
+                    },
+                    groupHeaderFactory: '.createGroupHeader',
+                    parameters: {
+                        expand: 'ItemSet'
+                    }
+                }"
+                class="sapUiResponsiveMargin"
+                width="auto"
+                growing="true"
+                growingScrollToLoad="true"
+                growingThreshold="10">
+                <m:columns>
+                    <m:Column>
+                        <m:Text text="{i18n>movIdColumn}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>movTypeColumn}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>descriptionColumn}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>createdByColumn}"/>
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="{i18n>createdAtColumn}"/>
+                    </m:Column>
+                </m:columns>
+                <m:items>
+                    <m:ColumnListItem type="Navigation" press="onMovementPress">
+                        <m:cells>
+                            <m:Text text="{MovId}"/>
+                            <m:Text text="{MovType}"/>
+                            <m:Text text="{Description}"/>
+                            <m:Text text="{CreatedBy}"/>
+                            <m:Text text="{
+                                path: 'CreatedAt',
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'medium'
+                                }
+                            }"/>
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </m:content>
+    </m:Page>
+</mvc:View>
