@@ -1,0 +1,87 @@
+<mvc:View
+    controllerName="com.sap.mov.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <m:Page
+        id="detailPage"
+        title="{i18n>detailTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        busy="{appView>/busy}"
+        busyIndicatorDelay="{appView>/delay}">
+        <m:headerContent>
+            <m:Button
+                id="deleteMovementButton"
+                icon="sap-icon://delete"
+                type="Negative"
+                press="onDeleteMovementPress"/>
+        </m:headerContent>
+        <m:content>
+            <f:SimpleForm
+                id="movementDetailForm"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0"
+                columnsXL="1" columnsL="1" columnsM="1"
+                breakpointM="768"
+                class="sapUiSmallMarginTop">
+                <f:content>
+                    <core:Title text="{i18n>movementDetails}"/>
+                    <Label text="{i18n>movIdColumn}"/>
+                    <Text text="{MovId}"/>
+                    <Label text="{i18n>movTypeColumn}"/>
+                    <Text text="{MovType}"/>
+                    <Label text="{i18n>descriptionColumn}"/>
+                    <Text text="{Description}"/>
+                    <Label text="{i18n>movDateColumn}"/>
+                    <Text text="{
+                        path: 'MovDate',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: {
+                            style: 'long'
+                        }
+                    }"/>
+                    <Label text="{i18n>createdByColumn}"/>
+                    <Text text="{CreatedBy}"/>
+                    <Label text="{i18n>createdAtColumn}"/>
+                    <Text text="{
+                        path: 'CreatedAt',
+                        type: 'sap.ui.model.type.DateTime',
+                        formatOptions: {
+                            style: 'medium'
+                        }
+                    }"/>
+
+                    <core:Title text="{i18n>movementItems}"/>
+                    <Table id="itemTable"
+                        items="{ItemSet}"
+                        noDataText="{i18n>noItemsAdded}"
+                        growing="true"
+                        growingScrollToLoad="true"
+                        growingThreshold="10">
+                        <columns>
+                            <Column><m:Text text="{i18n>itemIdColumn}"/></Column>
+                            <Column><m:Text text="{i18n>productIdColumn}"/></Column>
+                            <Column><m:Text text="{i18n>quantityColumn}"/></Column>
+                            <Column><m:Text text="{i18n>unitColumn}"/></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <m:cells>
+                                    <m:Text text="{ItemId}"/>
+                                    <m:Text text="{ProductId}"/>
+                                    <m:Text text="{Quantity}"/>
+                                    <m:Text text="{Unit}"/>
+                                </m:cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </f:content>
+            </f:SimpleForm>
+        </m:content>
+    </m:Page>
+</mvc:View>
