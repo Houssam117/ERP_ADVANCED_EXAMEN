@@ -30,25 +30,25 @@
                 breakpointM="768"
                 class="sapUiSmallMarginTop">
                 <f:content>
-                    <core:Title text="{i18n>movementDetails}"/>
-                    <Label text="{i18n>movIdColumn}"/>
-                    <Text text="{MovId}"/>
-                    <Label text="{i18n>movTypeColumn}"/>
-                    <Text text="{MovType}"/>
-                    <Label text="{i18n>descriptionColumn}"/>
-                    <Text text="{Description}"/>
-                    <Label text="{i18n>movDateColumn}"/>
-                    <Text text="{
+                    <core:Title id="_IDGenTitle" text="{i18n>movementDetails}"/>
+                    <m:Label id="_IDGenLabel1" text="{i18n>movIdColumn}"/>
+                    <m:Text id="_IDGenText" text="{MovId}"/>
+                    <m:Label id="_IDGenLabel2" text="{i18n>movTypeColumn}"/>
+                    <m:Text id="_IDGenText1" text="{MovType}"/>
+                    <m:Label id="_IDGenLabel3" text="{i18n>descriptionColumn}"/>
+                    <m:Text id="_IDGenText2" text="{Description}"/>
+                    <m:Label id="_IDGenLabel4" text="{i18n>movDateColumn}"/>
+                    <m:Text id="_IDGenText3" text="{
                         path: 'MovDate',
                         type: 'sap.ui.model.type.Date',
                         formatOptions: {
                             style: 'long'
                         }
                     }"/>
-                    <Label text="{i18n>createdByColumn}"/>
-                    <Text text="{CreatedBy}"/>
-                    <Label text="{i18n>createdAtColumn}"/>
-                    <Text text="{
+                    <m:Label id="_IDGenLabel5" text="{i18n>createdByColumn}"/>
+                    <m:Text id="_IDGenText4" text="{CreatedBy}"/>
+                    <m:Label id="_IDGenLabel6" text="{i18n>createdAtColumn}"/>
+                    <m:Text id="_IDGenText5" text="{
                         path: 'CreatedAt',
                         type: 'sap.ui.model.type.DateTime',
                         formatOptions: {
@@ -56,30 +56,30 @@
                         }
                     }"/>
 
-                    <core:Title text="{i18n>movementItems}"/>
-                    <Table id="itemTable"
+                    <core:Title id="_IDGenTitle1" text="{i18n>movementItems}"/>
+                    <m:Table id="itemTable"
                         items="{ItemSet}"
                         noDataText="{i18n>noItemsAdded}"
                         growing="true"
                         growingScrollToLoad="true"
                         growingThreshold="10">
-                        <columns>
-                            <Column><m:Text text="{i18n>itemIdColumn}"/></Column>
-                            <Column><m:Text text="{i18n>productIdColumn}"/></Column>
-                            <Column><m:Text text="{i18n>quantityColumn}"/></Column>
-                            <Column><m:Text text="{i18n>unitColumn}"/></Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem>
+                        <m:columns>
+                            <m:Column id="_IDGenColumn"><m:Text id="_IDGenText6" text="{i18n>itemIdColumn}"/></m:Column>
+                            <m:Column id="_IDGenColumn1"><m:Text id="_IDGenText7" text="{i18n>productIdColumn}"/></m:Column>
+                            <m:Column id="_IDGenColumn2"><m:Text id="_IDGenText8" text="{i18n>quantityColumn}"/></m:Column>
+                            <m:Column id="_IDGenColumn3"><m:Text id="_IDGenText9" text="{i18n>unitColumn}"/></m:Column>
+                        </m:columns>
+                        <m:items>
+                            <m:ColumnListItem id="_IDGenColumnListItem">
                                 <m:cells>
-                                    <m:Text text="{ItemId}"/>
-                                    <m:Text text="{ProductId}"/>
-                                    <m:Text text="{Quantity}"/>
-                                    <m:Text text="{Unit}"/>
+                                    <m:Text id="_IDGenText10" text="{ItemId}"/>
+                                    <m:Text id="_IDGenText11" text="{ProductId}"/>
+                                    <m:Text id="_IDGenText12" text="{Quantity}"/>
+                                    <m:Text id="_IDGenText13" text="{Unit}"/>
                                 </m:cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
+                            </m:ColumnListItem>
+                        </m:items>
+                    </m:Table>
                 </f:content>
             </f:SimpleForm>
         </m:content>

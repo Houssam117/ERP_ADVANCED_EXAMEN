@@ -16,7 +16,7 @@
             ],
             "args": [
                 "--open",
-                "test/flpSandbox.html#zmovementsui5-tile"
+                "test/flpSandbox.html#movementsapp-displa"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
@@ -43,7 +43,7 @@
                 "--config",
                 "./ui5-mock.yaml",
                 "--open",
-                "test/flpSandbox.html#zmovementsui5-tile"
+                "test/flpSandbox.html#movementsapp-displa"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
@@ -69,7 +69,7 @@
                 "--config",
                 "./ui5-local.yaml",
                 "--open",
-                "test/flpSandbox.html#zmovementsui5-tile"
+                "test/flpSandbox.html#movementsapp-displa"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",

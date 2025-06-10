@@ -1,12 +1,22 @@
-sap.ui.define(
-    ["sap/suite/ui/generic/template/lib/AppComponent"],
-    function (Component) {
-        "use strict";
+sap.ui.define([
+    "sap/ui/core/UIComponent",
+    "sap/ui/Device",
+    "com/sap/mov/model/models"
+], function (UIComponent, Device, models) {
+    "use strict";
 
-        return Component.extend("zmovementsui5.Component", {
-            metadata: {
-                manifest: "json"
-            }
-        });
-    }
-);
+    return UIComponent.extend("com.sap.mov.Component", {
+
+        metadata: {
+            manifest: "json"
+        },
+
+        init: function () {
+            UIComponent.prototype.init.apply(this, arguments);
+
+            this.getRouter().initialize();
+
+            this.setModel(models.createDeviceModel(), "device");
+        }
+    });
+});
