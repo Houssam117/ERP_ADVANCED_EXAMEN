@@ -17,14 +17,16 @@
     },
     "dataSources": {
       "mainService": {
-          "uri": "/sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV/",
-          "type": "OData",
-          "settings": {
-              "localUri": "localService/mainService/metadata.xml",
-              "odataVersion": "2.0"
-          }
+        "uri": "/sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV/",
+        "type": "OData",
+        "settings": {
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0",
+          "annotations": [],
+          "defaultBindingMode": "TwoWay"
+        }
       }
-  }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -71,7 +73,14 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
-        "settings": {}
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
       }
     },
     "resources": {
