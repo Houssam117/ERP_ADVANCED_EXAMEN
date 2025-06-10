@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "Movements",
-									"targetURL": "#movementsapp-displa"
+									"targetURL": "#movements-display"
 								}
 							}]
 						}]
@@ -51,18 +51,18 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"movementsapp-display": {
-								"semanticObject": "movementsapp",
+							"movements-display": {
+								"semanticObject": "movements",
 								"action": "display",
-								"description": "Movements App ",
+								"description": "Movements App",
 								"title": "Movements",
 								"signature": {
 									"parameters": {}
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=movementsapp",
-									"url": sap.ui.require.toUrl("movementsapp")
+									"additionalInformation": "SAPUI5.Component=com.sap.mov",
+									"url": sap.ui.require.toUrl("com/sap/mov")
 								}
 							}
 						}

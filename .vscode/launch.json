@@ -1,12 +1,11 @@
 {
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Start zmovements_ui5",
+            "name": "Start movementsapp",
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}/zmovements_ui5",
             "runtimeExecutable": "npx",
+            "cwd": "${workspaceFolder}/movementsapp",
             "windows": {
                 "runtimeExecutable": "npx.cmd"
             },
@@ -16,21 +15,22 @@
             ],
             "args": [
                 "--open",
-                "test/flpSandbox.html#movementsapp-displa"
+                "test/flpSandbox.html#movementsapp-display"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "std",
+            "port": 9229,
             "env": {
                 "DEBUG": "--inspect",
-                "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+                "FIORI_TOOLS_URL_PARAMS": "sap-client=238&sap-ui-xx-viewCache=false"
             }
         },
         {
-            "name": "Start zmovements_ui5 Mock",
+            "name": "Start movementsapp Mock",
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}/zmovements_ui5",
+            "cwd": "${workspaceFolder}/movementsapp",
             "runtimeExecutable": "npx",
             "windows": {
                 "runtimeExecutable": "npx.cmd"
@@ -43,20 +43,21 @@
                 "--config",
                 "./ui5-mock.yaml",
                 "--open",
-                "test/flpSandbox.html#movementsapp-displa"
+                "test/flpSandbox.html#movementsapp-display"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "std",
+            "port": 9229,
             "env": {
-                "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+                "FIORI_TOOLS_URL_PARAMS": "sap-client=238&sap-ui-xx-viewCache=false"
             }
         },
         {
-            "name": "Start zmovements_ui5 Local",
+            "name": "Start movementsapp Local",
             "type": "node",
             "request": "launch",
-            "cwd": "${workspaceFolder}/zmovements_ui5",
+            "cwd": "${workspaceFolder}/movementsapp",
             "runtimeExecutable": "npx",
             "windows": {
                 "runtimeExecutable": "npx.cmd"
@@ -69,14 +70,16 @@
                 "--config",
                 "./ui5-local.yaml",
                 "--open",
-                "test/flpSandbox.html#movementsapp-displa"
+                "test/flpSandbox.html#movementsapp-display"
             ],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",
             "outputCapture": "std",
+            "port": 9229,
             "env": {
-                "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+                "FIORI_TOOLS_URL_PARAMS": "sap-client=238&sap-ui-xx-viewCache=false"
             }
         }
-    ]
+    ],
+    "compounds": []
 }

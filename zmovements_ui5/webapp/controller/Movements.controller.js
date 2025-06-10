@@ -10,12 +10,19 @@ sap.ui.define([
     return Controller.extend("movementsapp.controller.Movements", {
 
         onInit: function () {
-            this.uri = "/MovementSet";
+            this.oRouter = this.getOwnerComponent().getRouter();
+            this.oRouter.getRoute("movements").attachPatternMatched(this._onObjectMatched, this);
+            this.oModel = this.getOwnerComponent().getModel();
+            this.uri = "/MovementSetSet";
             this._items = []; // items for create popup 
 
             // model for the create popup
             var oItemsModel = new JSONModel({ items: [] });
             this.getView().setModel(oItemsModel, "itemsModel");
+        },
+
+        _onObjectMatched: function (oEvent) {
+            // ... existing code ...
         },
 
         applyFilters: function () {
@@ -145,11 +152,11 @@ sap.ui.define([
             var oView = this.getView();
 
             // Create the movement
-            oModel.create("/MovementSet", newMovement, {
+            oModel.create("/MovementSetSet", newMovement, {
                 success: function () {
-                    MessageToast.show(" movement created ");
+                    MessageToast.show("New movement created successfully");
 
-                 
+                    // Create items associated with this movement one by one
                     var items = this._items;
                     items.forEach(function (item, index) {
                         var newItem = {
@@ -161,14 +168,13 @@ sap.ui.define([
                         };
                         console.log("Item: ", newItem);
 
-                      
+                        // Use a unique groupId for each item creation request
                         var groupId = "batchRequest" + index;
                         oModel.create("/ItemSet", newItem, {
                             groupId: groupId,
                             success: function () {
-                                console.log("Item created : ", newItem);
-                                // Update the items model to reflect the new item
-                                var oItemsModel = oView.getModel("itemsModel");
+                                console.log("Item created successfully: ", newItem);
+                                // Check if all items are created successfully
                                 if (index === items.length - 1) {
                                     oView.byId("createMovementDialog").close();
                                 }
@@ -178,8 +184,7 @@ sap.ui.define([
                             }
                         });
 
-                        // Submit the batch request for each item
-//I might want to batch all item creations together
+                        // Submit the changes for this item
                         oModel.submitChanges({
                             groupId: groupId,
                             success: function () {
@@ -200,8 +205,6 @@ sap.ui.define([
             console.log("New Movement: ", newMovement);
         },
 
-
-
         onOpenAddItemDialog: function () {
             if (!this._addItemDialog) {
                 this._addItemDialog = this.byId("addItemDialog");
@@ -216,17 +219,25 @@ sap.ui.define([
         },
 
         onAddItem: function () {
-            var materialNumber = this.byId("materialNumberInput").getValue();
-            var quantity = this.byId("quantityInput").getValue();
-            var unit = this.byId("unitInput").getValue();
+            var newItem = {
+                MovId: this._selectedMovId,
+                ItemId: Math.random().toString(36).substring(2, 8).toUpperCase(), // Generate a random item ID
+                Matnr: this.getView().byId("materialNumberInput").getValue(),
+                Umziz: this.getView().byId("quantityInput").getValue(),
+                Meins: this.getView().byId("unitInput").getValue()
+            };
 
-            var newItem = { materialNumber, quantity, unit };
-            this._items.push(newItem);
-
-            var oItemsModel = this.getView().getModel("itemsModel");
-            oItemsModel.setProperty("/items", this._items);
-
-            this.onCloseAddItemDialog();
+            var oModel = this.getView().getModel();
+            oModel.create("/ItemSetSet", newItem, {
+                success: function() {
+                    MessageToast.show("Item added successfully.");
+                    this.onCloseAddItemDialog();
+                    this.oModel.refresh();
+                }.bind(this),
+                error: function() {
+                    MessageToast.show("Error adding item");
+                }
+            });
         },
 
         onDeleteEntry: function () {
@@ -249,13 +260,13 @@ sap.ui.define([
         },
 
         onConfirmDelete: function () {
-            var sPath = "/MovementSet('" + this._deleteEntryId + "')";
             var oModel = this.getView().getModel();
-
+            var sPath = "/MovementSetSet('" + this._deleteEntryId + "')";
             oModel.remove(sPath, {
                 success: function () {
                     MessageToast.show("Movement deleted successfully");
                     this.onCloseConfirmDeleteDialog();
+                    oModel.refresh();
                 }.bind(this),
                 error: function () {
                     MessageToast.show("Error deleting movement");

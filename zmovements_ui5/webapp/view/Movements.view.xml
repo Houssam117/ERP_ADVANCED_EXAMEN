@@ -1,0 +1,88 @@
+<mvc:View
+    controllerName="com.sap.mov.controller.Movements"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+    <Page title="Movements">
+        <l:Splitter orientation="Horizontal">
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
+                    <Label text="Movement ID"/>
+                    <Input id="filterId" />
+                    <Label text="Movement Type"/>
+                    <Input id="filterType" />
+                    <Button text="Filter" press="applyFilters" />
+                </f:SimpleForm>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button text="New" icon="sap-icon://add" press="onOpenCreateDialog" class="searchButton"/>
+                </Toolbar>
+                <List id="entryList" mode="SingleSelectMaster" items="{/MovementSetSet}" selectionChange="onSelectionChange" class="movementList">
+                    <items>
+                        <ObjectListItem
+                            type="Navigation"
+                            press="onSelectionChange"
+                            title="{Type} - {Partner}"
+                            number="{
+                                path: 'MovDate',
+                                type: 'sap.ui.model.type.Date',
+                                formatOptions: {
+                                    style: 'medium',
+                                    source: {
+                                        pattern: 'yyyy-MM-ddTHH:mm:ss'
+                                    }
+                                }
+                            }">
+                            <firstStatus>
+                                <ObjectStatus
+                                    text="{
+                                        parts: [{path: 'Finished'}],
+                                        formatter: '.formatter.statusText'
+                                    }"
+                                    state="{
+                                        parts: [{path: 'Finished'}],
+                                        formatter: '.formatter.statusState'
+                                    }"/>
+                            </firstStatus>
+                            <attributes>
+                                <ObjectAttribute text="{Location}" />
+                            </attributes>
+                        </ObjectListItem>
+                    </items>
+                </List>
+            </VBox>
+            <VBox class="sapUiSmallMargin">
+                <f:SimpleForm id="detailForm" title="Movement Details" editable="false" layout="ResponsiveGridLayout">
+                    <Label text="ID" />
+                    <Text id="detailId" text="{Id}" />
+                    <Label text="Type" />
+                    <Text id="detailType" text="{Type}" />
+                    <Label text="Movement Date" />
+                    <Text id="detailMovDate" text="{
+                        path: 'MovDate',
+                        type: 'sap.ui.model.type.Date',
+                        formatOptions: { style: 'long' }
+                    }" />
+                    <Label text="Partner" />
+                    <Text id="detailPartner" text="{Partner}" />
+                    <Label text="Location" />
+                    <Text id="detailLocation" text="{Location}" />
+                    <Label text="Status" />
+                    <CheckBox id="detailFinished" selected="{Finished}" editable="false"/>
+                </f:SimpleForm>
+                <List id="itemsListDetail" items="{/ItemSetSet}">
+                    <items>
+                        <StandardListItem
+                            title="{Product_Id}"
+                            description="Quantity: {Quantity} {Unit}" />
+                    </items>
+                </List>
+                <Toolbar>
+                    <ToolbarSpacer />
+                    <Button id="deleteButton" text="{i18n>deleteButtonText}" icon="sap-icon://delete" press="onConfirmDelete" type="Reject" visible="false"/>
+                </Toolbar>
+            </VBox>
+        </l:Splitter>
+    </Page>
+</mvc:View>

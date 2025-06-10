@@ -1,133 +1,120 @@
 {
-    "_version": "1.38.0",
-    "sap.app": {
-        "id": "com.sap.mov",
-        "type": "application",
-        "i18n": "i18n/i18n.properties",
-        "applicationVersion": {
-            "version": "0.0.1"
-        },
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "resources": "resources.json",
-        "sourceTemplate": {
-            "id": "@sap/generator-fiori:basic",
-            "version": "1.18.0",
-            "toolsId": "3932b5e2-6b39-4787-9ed7-dfa669bf0099"
-        },
-        "dataSources": {
-            "mainService": {
-                "uri": "/sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV/",
-                "type": "OData",
-                "settings": {
-                    "localUri": "localService/mainService/metadata.xml",
-                    "odataVersion": "2.0"
-                }
-            }
-        }
+  "_version": "1.17.0",
+  "sap.app": {
+    "id": "movementsapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
     },
-    "sap.ui": {
-        "technology": "UI5",
-        "icons": {
-            "icon": "",
-            "favIcon": "",
-            "phone": "",
-            "phone@2": "",
-            "tablet": "",
-            "tablet@2": ""
-        },
-        "deviceTypes": {
-            "desktop": true,
-            "tablet": true,
-            "phone": true
-        }
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.13.6",
+      "toolsId": "5492cfe0-e99a-45f0-90a6-26dbea28e4df"
     },
-    "sap.ui5": {
-        "flexEnabled": true,
-        "dependencies": {
-            "minUI5Version": "1.108.0",
-            "libs": {
-                "sap.m": {},
-                "sap.ui.core": {},
-                "sap.ushell": {},
-                "sap.f": {},
-                "sap.ui.layout": {}
-            }
-        },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
-        },
-        "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "com.sap.mov.i18n.i18n"
-                }
-            },
-            "": {
-                "dataSource": "mainService",
-                "preload": true,
-                "settings": {
-                    "defaultBindingMode": "TwoWay",
-                    "defaultCountMode": "Inline",
-                    "refreshAfterChange": false,
-                    "metadataUrlParams": {
-                        "sap-value-list": "none"
-                    }
-                }
-            }
-        },
-        "resources": {
-            "css": [
-                {
-                    "uri": "css/style.css"
-                }
-            ]
-        },
-        "routing": {
-            "config": {
-                "routerClass": "sap.m.routing.Router",
-                "viewType": "XML",
-                "viewPath": "com.sap.mov.view",
-                "controlAggregation": "pages",
-                "controlId": "app",
-                "clearControlAggregation": false
-            },
-            "routes": [
-                {
-                    "pattern": "",
-                    "name": "appHome",
-                    "target": "appTarget"
-                },
-                {
-                    "pattern": "Movement/{movId}",
-                    "name": "detail",
-                    "target": "detailTarget"
-                }
-            ],
-            "targets": {
-                "appTarget": {
-                    "viewName": "App",
-                    "viewId": "appView",
-                    "viewLevel": 1
-                },
-                "detailTarget": {
-                    "viewName": "Detail",
-                    "viewId": "detailView",
-                    "viewLevel": 2
-                }
-            }
-        },
-        "rootView": {
-            "viewName": "com.sap.mov.view.App",
-            "type": "XML",
-            "async": true,
-            "id": "app"
-        }
+    "dataSources": {
+      "mainService": {
+          "uri": "/sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV/",
+          "type": "OData",
+          "settings": {
+              "localUri": "localService/mainService/metadata.xml",
+              "odataVersion": "2.0"
+          }
+      }
+  }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
     },
-    "sap.fiori": {
-        "registrationIds": [],
-        "archeType": "transactional"
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
     }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.71.68",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "movementsapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "movementsapp.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMovements",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMovements"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetMovements": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Movements",
+          "viewName": "Movements"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "movementsapp.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
 }

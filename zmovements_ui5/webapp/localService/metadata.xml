@@ -1,0 +1,39 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZSD_031_MOVEMENTS_SRV" xml:lang="en" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="Movement" sap:content-version="1">
+<Key>
+<PropertyRef Name="Id"/>
+</Key>
+<Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Mov ID" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Mov Type" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MovDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false"/>
+<Property Name="ChgDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false"/>
+<Property Name="ChgUser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Location" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Location" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Finished" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Indicator" sap:creatable="false" sap:updatable="false"/>
+</EntityType>
+<EntityType Name="Item" sap:content-version="1">
+<Key>
+<PropertyRef Name="MovId"/>
+<PropertyRef Name="ItemId"/>
+</Key>
+<Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Client" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MovId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Mov ID" sap:creatable="false" sap:updatable="false"/>
+<Property Name="ItemId" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item ID" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Umziz" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="0" sap:unicode="false" sap:label="Convers.Factor" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+</EntityType>
+<EntityContainer Name="ZSD_031_MOVEMENTS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="MovementSetSet" EntityType="ZSD_031_MOVEMENTS_SRV.Movement" sap:searchable="true" sap:content-version="1"/>
+<EntitySet Name="ItemSetSet" EntityType="ZSD_031_MOVEMENTS_SRV.Item" sap:searchable="true" sap:content-version="1"/>
+</EntityContainer>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>

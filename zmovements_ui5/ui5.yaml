@@ -28,5 +28,6 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: movementsapp
+        component: com.sap.mov
         ui5Theme: sap_fiori_3
+        async: true

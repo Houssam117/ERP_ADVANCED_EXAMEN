@@ -1,0 +1,91 @@
+/* Enter your custom styles here */
+.TitleBox {
+    margin: 2rem;
+    margin-top: 1rem;
+    background-color: white;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.BodyBox {
+    margin: 2rem;
+    margin-top: -1rem;
+    background-color: white;
+    padding: 1rem;
+}
+
+.detailChanges {
+    margin-top: 0.5rem;
+    color: darkgray;
+}
+
+.ItemsBox {
+    margin: 2rem;
+    margin-top: -1rem;
+    background-color: white;
+    padding: 1rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.itemsTitle {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.typeFilter {
+    margin: 1rem;
+    margin-bottom: 0rem;
+}
+
+.dateFilter {
+    margin: 1rem;
+}
+
+.movementList {
+    border-top: 1px solid lightgray;
+}
+
+
+.noDataText {
+    margin: 2rem;
+}
+
+.searchButton {
+    margin-left: 15rem;
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+}
+
+
+.contentClass {
+    margin: 2rem;
+}
+
+
+.createMovementDialog {
+    width: 50vw;
+}
+
+
+.TitleAndButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TitleAndButton .title {
+    flex-grow: 1;
+}
+
+.deletePopUp {
+    margin: 2rem;
+}
