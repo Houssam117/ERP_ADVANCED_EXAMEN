@@ -2,7 +2,7 @@
 
 specVersion: "3.1"
 metadata:
-  name: movementsapp
+  name: zmovementsui5
 type: application
 framework:
   name: SAPUI5
@@ -38,7 +38,7 @@ server:
       configuration:
         mountPath: /
         services:
-          - urlPath: /sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV
+          - urlPath: /sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV
             metadataPath: ./webapp/localService/metadata.xml
             mockdataPath: ./webapp/localService/data
             generateMockData: true

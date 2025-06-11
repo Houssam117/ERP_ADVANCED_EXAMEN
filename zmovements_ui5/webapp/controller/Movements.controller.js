@@ -24,7 +24,7 @@ sap.ui.define([
 
             var aFilters = [];
             if (sSelectedKey && sSelectedKey !== "all") {
-                aFilters.push(new Filter("Type", FilterOperator.EQ, sSelectedKey));
+                aFilters.push(new Filter("Mov_Type", FilterOperator.EQ, sSelectedKey));
             }
 
             var oList = this.byId("entryList");
@@ -40,7 +40,7 @@ sap.ui.define([
 
             if (oSelectedItem) {
                 var oBindingContext = oSelectedItem.getBindingContext();
-                var sMovId = oBindingContext.getProperty("Id");
+                var sMovId = oBindingContext.getProperty("Mov_Id");
                 this._showDetail(oBindingContext, sMovId);
             } else {
                 this._clearDetail();
@@ -58,9 +58,9 @@ sap.ui.define([
             oDetailPage.bindElement(oBindingContext.getPath());
             this.byId("SplitApp").toDetail(oDetailPage);
 
-            // Apply filter to the items list based on selected MovId
+            // Apply filter to the items list based on selected Mov_Id
             var oItemsList = this.byId("itemsListDetail");
-            var aFilters = [new Filter("MovId", FilterOperator.EQ, sMovId)];
+            var aFilters = [new Filter("Mov_Id", FilterOperator.EQ, sMovId)];
             var oBinding = oItemsList.getBinding("items");
             oBinding.filter(aFilters);
         },
@@ -136,13 +136,12 @@ sap.ui.define([
             }
             var formattedTime = toODataTime(currentDate);
 
-            // Alleen creatable properties meesturen!
             var newMovement = {
-                MovType: type,
-                MovDate: formattedDate,
-                CreatedBy: user,
-                CreatedOn: formattedCurrentDate,
-                CreatedAt: formattedTime,
+                Mov_Type: type,
+                Mov_Date: formattedDate,
+                Created_By: user,
+                Created_On: formattedCurrentDate,
+                Created_At: formattedTime,
                 Description: description
             };
 
@@ -152,21 +151,19 @@ sap.ui.define([
             oModel.create("/MovementSetSet", newMovement, {
                 success: function (oData) {
                     MessageToast.show("New movement created successfully");
-                    var movId = oData.MovId; // backend generated
-                    // Create items associated with this movement one by one
+                    var movId = oData.Mov_Id; // backend generated
                     var items = this._items;
                     items.forEach(function (item, index) {
-                        // Controleer of ItemId verplicht is, zo ja, genereer een unieke waarde
                         var itemId = this._generateItemRandomId ? this._generateItemRandomId() : (index + 1).toString();
                         var newItem = {
-                            MovId: movId,
-                            ItemId: itemId,
-                            ProductId: item.materialNumber,
+                            Mov_Id: movId,
+                            Item_Id: itemId,
+                            Product_Id: item.materialNumber,
                             Quantity: item.quantity,
                             Unit: item.unit,
-                            CreatedBy: user,
-                            CreatedOn: formattedCurrentDate,
-                            CreatedAt: formattedTime
+                            Created_By: user,
+                            Created_On: formattedCurrentDate,
+                            Created_At: formattedTime
                         };
                         var groupId = "batchRequest" + index;
                         oModel.create("/ItemSetSet", newItem, {
