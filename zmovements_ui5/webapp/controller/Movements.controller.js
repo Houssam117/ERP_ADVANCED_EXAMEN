@@ -221,7 +221,7 @@ sap.ui.define([
                 this._deleteEntryId = null;
             }
             var oDetailPage = this.byId("detailPage");
-            this._deleteEntryId = oDetailPage.getBindingContext().getProperty("Id");
+            this._deleteEntryId = oDetailPage.getBindingContext().getProperty("Mov_Id");
 
             if (!this._confirmDeleteDialog) {
                 this._confirmDeleteDialog = this.byId("confirmDeleteDialog");
