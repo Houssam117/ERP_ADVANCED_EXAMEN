@@ -17,9 +17,12 @@
                                 </items>
                             </Select>                    
                         </VBox>
-                        <Button text="Search " type="Emphasized" press="applyFilters" class="searchButton"/>
-                        <Button text="New" icon="sap-icon://add" press="onOpenCreateDialog" class="searchButton"/>
-                        
+                        <Toolbar>
+                            <ToolbarSpacer/>
+                            <Button text="Apply" type="Emphasized" press="applyFilters" class="searchButton"/>
+                            <Button text="Create" icon="sap-icon://add" press="onOpenCreateDialog" class="searchButton"/>
+                        </Toolbar>
+                    
                         <List id="entryList" mode="SingleSelectMaster" items="{/MovementSetSet}" selectionChange="onSelectionChange" class="movementList">
                             <StandardListItem
                                 title="{Mov_Id}"
@@ -61,7 +64,7 @@
                             <VBox class="ItemsBox">
                                 <Text class="itemsTitle" text="Items: "/>
                                 <List id="itemsListDetail" items="{/ItemSetSet}">
-                                    <StandardListItem title="{Matnr}" info= "{Umziz} {Meins}"/>
+                                    <StandardListItem title="{Product_Id}" info="{Quantity} {Unit}"/>
                                 </List>
                             </VBox>                   
                         </VBox>

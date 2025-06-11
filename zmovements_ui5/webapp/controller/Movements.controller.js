@@ -21,17 +21,24 @@ sap.ui.define([
         applyFilters: function () {
             var oSelect = this.byId("typeSelect");
             var sSelectedKey = oSelect.getSelectedKey();
+            var oDatePicker = this.byId("datePicker");
+            var oDate = oDatePicker ? oDatePicker.getDateValue() : null;
 
             var aFilters = [];
             if (sSelectedKey && sSelectedKey !== "all") {
                 aFilters.push(new Filter("Mov_Type", FilterOperator.EQ, sSelectedKey));
+            }
+            if (oDate) {
+                var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyy-MM-dd'T'HH:mm:ss" });
+                var formattedDate = oDateFormat.format(oDate);
+                aFilters.push(new Filter("Mov_Date", FilterOperator.EQ, formattedDate));
             }
 
             var oList = this.byId("entryList");
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilters);
 
-            console.log("Applied filter: ", sSelectedKey);
+            console.log("Applied filters: ", aFilters);
         },
 
         onSelectionChange: function (oEvent) {
@@ -127,7 +134,6 @@ sap.ui.define([
             var currentDate = new Date();
             var formattedCurrentDate = oDateFormat.format(currentDate);
 
-            // Format OData time (PTxxHxxMxxS)
             function toODataTime(dateObj) {
                 var h = dateObj.getHours().toString().padStart(2, '0');
                 var m = dateObj.getMinutes().toString().padStart(2, '0');
@@ -165,9 +171,7 @@ sap.ui.define([
                             Created_On: formattedCurrentDate,
                             Created_At: formattedTime
                         };
-                        var groupId = "batchRequest" + index;
                         oModel.create("/ItemSetSet", newItem, {
-                            groupId: groupId,
                             success: function () {
                                 if (index === items.length - 1) {
                                     oView.byId("createMovementDialog").close();
@@ -176,9 +180,6 @@ sap.ui.define([
                             error: function () {
                                 MessageToast.show("Error creating item: " + item.materialNumber);
                             }
-                        });
-                        oModel.submitChanges({
-                            groupId: groupId
                         });
                     }.bind(this));
                 }.bind(this),
