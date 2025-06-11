@@ -12,6 +12,7 @@ sap.ui.define([
         onInit: function () {
             this.uri = "/MovementSetSet";
             this._items = []; // items for create popup 
+            this._currentMovPath = null;
 
             // model for the create popup
             var oItemsModel = new JSONModel({ items: [] });
@@ -48,6 +49,7 @@ sap.ui.define([
             if (oSelectedItem) {
                 var oBindingContext = oSelectedItem.getBindingContext();
                 var sMovId = oBindingContext.getProperty("Mov_Id");
+                this._currentMovPath = oBindingContext.getPath();
                 this._showDetail(oBindingContext, sMovId);
             } else {
                 this._clearDetail();
@@ -251,6 +253,55 @@ sap.ui.define([
             });
 
             console.log("Delete Movement ID: ", this._deleteEntryId);
+        },
+
+        onEditMovement: function () {
+            if (!this._currentMovPath) { return; }
+            var oModel = this.getView().getModel();
+            var oData = oModel.getProperty(this._currentMovPath);
+            this.byId("editTypeSelect").setSelectedKey(oData.Mov_Type);
+            this.byId("editDatePicker").setDateValue(new Date(oData.Mov_Date));
+            this.byId("editPartnerInput").setValue(oData.Created_By);
+            this.byId("editDescriptionInput").setValue(oData.Description);
+            this.byId("editMovementDialog").open();
+        },
+
+        onCloseEditDialog: function () {
+            this.byId("editMovementDialog").close();
+        },
+
+        _formatDate: function (d) {
+            return sap.ui.core.format.DateFormat.getDateTimeInstance({ pattern: "yyyy-MM-dd'T'HH:mm:ss" }).format(d);
+        },
+
+        onSaveEdit: function () {
+            if (!this._currentMovPath) { return; }
+            var oModel = this.getView().getModel();
+            var oPayload = {
+                Mov_Type: this.byId("editTypeSelect").getSelectedKey(),
+                Mov_Date: this._formatDate(this.byId("editDatePicker").getDateValue()),
+                Created_By: this.byId("editPartnerInput").getValue(),
+                Description: this.byId("editDescriptionInput").getValue()
+            };
+            oModel.update(this._currentMovPath, oPayload, {
+                success: function () {
+                    MessageToast.show("Movement updated");
+                    this.byId("editMovementDialog").close();
+                }.bind(this),
+                error: function () {
+                    MessageToast.show("Update failed");
+                }
+            });
+        },
+
+        onToggleFinished: function (oEvent) {
+            if (!this._currentMovPath) { return; }
+            var bState = oEvent.getSource().getState();
+            var oModel = this.getView().getModel();
+            oModel.update(this._currentMovPath, { Finished: bState }, {
+                success: function () { MessageToast.show("Status updated"); },
+                error: function () { MessageToast.show("Status change failed"); }
+            });
         }
     });
 });

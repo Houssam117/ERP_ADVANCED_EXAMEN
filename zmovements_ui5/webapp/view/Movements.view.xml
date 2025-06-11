@@ -44,16 +44,19 @@
                             <VBox class="TitleBox">
                             <HBox class="TitleAndButton"> 
                                 <Text id="detailId" text="ID: {Mov_Id}" class="title"/>
-                                <Button
-											id="deleteUserButton"
-											icon="sap-icon://delete"
-											tooltip="{i18n>deleteButtonText}"
-											press="onDeleteEntry">
-											<layoutData>
-												<OverflowToolbarLayoutData priority="NeverOverflow"/>
-											</layoutData>
-							    </Button>
+                                <ToolbarSpacer/>
+                                <Button id="deleteUserButton" icon="sap-icon://delete" tooltip="Delete" press="onDeleteEntry">
+                                    <layoutData>
+                                        <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                    </layoutData>
+                                </Button>
                             </HBox>
+                            <Toolbar id="detailToolbar" design="Transparent">
+                                <Button text="Edit" icon="sap-icon://edit" press="onEditMovement" />
+                                <ToolbarSpacer/>
+                                <Label text="Finished" />
+                                <Switch id="finishedSwitch" state="{Finished}" change="onToggleFinished" />
+                            </Toolbar>
                                 <Text id="detailLocation" text="Location: {Description}"/>
                        
                             </VBox>
@@ -151,6 +154,34 @@
         </beginButton>
         <endButton>
             <Button text="Delete" type="Emphasized" press="onConfirmDelete"/>
+        </endButton>
+    </Dialog>
+
+    <!-- Edit Movement Dialog -->
+    <Dialog id="editMovementDialog" title="Edit Movement">
+        <content>
+            <VBox class="contentClass">
+                <Label text="Type"/>
+                <Select id="editTypeSelect">
+                    <items>
+                        <core:Item key="IN" text="IN"/>
+                        <core:Item key="OUT" text="OUT"/>
+                        <core:Item key="I/O" text="I/O"/>
+                    </items>
+                </Select>
+                <Label text="Date"/>
+                <DatePicker id="editDatePicker" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+                <Label text="Partner"/>
+                <Input id="editPartnerInput"/>
+                <Label text="Description"/>
+                <Input id="editDescriptionInput"/>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="Cancel" press="onCloseEditDialog"/>
+        </beginButton>
+        <endButton>
+            <Button text="Save" type="Emphasized" press="onSaveEdit"/>
         </endButton>
     </Dialog>
 </mvc:View>
