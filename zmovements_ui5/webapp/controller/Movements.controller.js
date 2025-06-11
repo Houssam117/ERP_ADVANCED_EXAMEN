@@ -118,7 +118,7 @@ sap.ui.define([
             var date = this.byId("datePicker").getDateValue();
             var partner = this.byId("partnerInput").getValue();
             var user = sap.ushell.Container.getUser().getId();
-            var description = ""; // Vul aan indien je een input hebt voor description
+            var description = location || "";
             var finished = false;
 
             // Format OData datetime (ISO 8601)
