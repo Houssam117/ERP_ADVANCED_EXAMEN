@@ -21,7 +21,7 @@ sap.ui.define([
         applyFilters: function () {
             var oSelect = this.byId("typeSelect");
             var sSelectedKey = oSelect.getSelectedKey();
-            var oDatePicker = this.byId("datePicker");
+            var oDatePicker = this.byId("datePickerFilter");
             var oDate = oDatePicker ? oDatePicker.getDateValue() : null;
 
             var aFilters = [];

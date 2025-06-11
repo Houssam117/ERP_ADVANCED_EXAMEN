@@ -15,7 +15,9 @@
                                     <core:Item key="OUT" text="OUT" />
                                     <core:Item key="I/O" text="I/O" />
                                 </items>
-                            </Select>                    
+                            </Select>
+                            <Label text="Date"/>
+                            <DatePicker id="datePickerFilter" width="100%" valueFormat="yyyy-MM-dd" displayFormat="long"/>
                         </VBox>
                         <Toolbar>
                             <ToolbarSpacer/>
