@@ -29,8 +29,8 @@
 <Property Name="Meins" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
 </EntityType>
 <EntityContainer Name="ZSD_031_MOVEMENTS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-<EntitySet Name="MovementSet" EntityType="ZSD_031_MOVEMENTS_SRV.Movement" sap:searchable="true" sap:content-version="1"/>
-<EntitySet Name="ItemSet" EntityType="ZSD_031_MOVEMENTS_SRV.Item" sap:searchable="true" sap:content-version="1"/>
+<EntitySet Name="/MovementSetSet" EntityType="ZSD_031_MOVEMENTS_SRV.Movement" sap:searchable="true" sap:content-version="1"/>
+<EntitySet Name="ItemSetSet" EntityType="ZSD_031_MOVEMENTS_SRV.Item" sap:searchable="true" sap:content-version="1"/>
 </EntityContainer>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV/$metadata"/>
 <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV/$metadata"/>

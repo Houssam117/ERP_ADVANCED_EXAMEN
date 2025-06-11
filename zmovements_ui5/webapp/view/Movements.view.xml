@@ -22,9 +22,9 @@
                         
                         <List id="entryList" mode="SingleSelectMaster" items="{/MovementSetSet}" selectionChange="onSelectionChange" class="movementList">
                             <StandardListItem
-                                title="{MOV_ID}"
-                                description="{MOV_TYPE}"
-                                info="{LOCATION}" />
+                                title="{Id}"
+                                description="{Type}"
+                                info="{Location}" />
                         </List>
                     </VBox>
                 </content>
@@ -38,7 +38,7 @@
                         <VBox id="detailContent" visible="false">
                             <VBox class="TitleBox">
                             <HBox class="TitleAndButton"> 
-                                <Text id="detailId" text="ID: {MOV_ID}" class="title"/>
+                                <Text id="detailId" text="ID: {Id}" class="title"/>
                                 <Button
 											id="deleteUserButton"
 											icon="sap-icon://delete"
@@ -49,19 +49,19 @@
 											</layoutData>
 							    </Button>
                             </HBox>
-                                <Text id="detailLocation" text="Location: {LOCATION}"/>
+                                <Text id="detailLocation" text="Location: {Location}"/>
                                 <Text id="detailFinished" text="{= ${Finished} ? 'Finished' : 'Not Finished'}"/>
                             </VBox>
                             <VBox class="BodyBox">
-                                <Text id="detailType" text="Type: {MOV_TYPE}"/>
-                                <Text id="detailMovDate" text="Date: {path: 'MOV_DATE', type: 'sap.ui.model.type.Date', formatOptions: {style: 'medium'}}" />
-                                <Text id="detailPartner" text="Partner: {DESCRIPTION}"/>
-                                <Text id="detailChanges" text="Created by {CREATED_BY} on {path: 'CREATED_ON', type: 'sap.ui.model.type.Date', formatOptions: {style: 'medium'}}" class="detailChanges"/>
+                                <Text id="detailType" text="Type: {Type}"/>
+                                <Text id="detailMovDate" text="Date: {path: 'MovDate', type: 'sap.ui.model.type.Date', formatOptions: {style: 'medium'}}" />
+                                <Text id="detailPartner" text="Partner: {Partner}"/>
+                                <Text id="detailChanges" text="Last changed by {ChgUser} on {path: 'ChgDate', type: 'sap.ui.model.type.Date', formatOptions: {style: 'medium'}}" class="detailChanges"/>
                             </VBox>      
                             <VBox class="ItemsBox">
                                 <Text class="itemsTitle" text="Items: "/>
                                 <List id="itemsListDetail" items="{/ItemSetSet}">
-                                    <StandardListItem title="{MATERIAL}" info= "{QUANTITY} {UNIT}"/>
+                                    <StandardListItem title="{Matnr}" info= "{Umziz} {Meins}"/>
                                 </List>
                             </VBox>                   
                         </VBox>

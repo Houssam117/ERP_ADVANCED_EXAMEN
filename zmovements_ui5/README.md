@@ -1,26 +1,25 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Tue Jun 10 2025 01:14:26 GMT+0200 (Central European Summer Time)|
-|**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.18.0|
+|**Generation Date and Time**<br>Mon Jun 10 2024 21:32:13 GMT+0200 (Central European Summer Time)|
+|**App Generator**<br>@sap/generator-fiori-freestyle|
+|**App Generator Version**<br>1.13.6|
 |**Generation Platform**<br>Visual Studio Code|
-|**Template Used**<br>List Report Page V2|
-|**Service Type**<br>OData Url|
-|**Service URL**<br>https://a03z.ucc.ovgu.de/sap/opu/odata/sap/Z_MOVEMENTS_SRV_SRV/|
-|**Module Name**<br>zmovements_ui5|
-|**Application Title**<br>Movement Management App|
+|**Template Used**<br>simple|
+|**Service Type**<br>SAP System (ABAP On Premise)|
+|**Service URL**<br>https://a03z.ucc.ovgu.de//sap/opu/odata/sap/ZSD_031_MOVEMENTS_SRV
+|**Module Name**<br>movementsapp|
+|**Application Title**<br>Movements|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_fiori_3|
-|**UI5 Version**<br>1.84.18|
+|**UI5 Version**<br>1.71.68|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>MovementSetSet|
 
-## zmovements_ui5
+## movementsapp
 
-An SAP Fiori application.
+Movements App 
 
 ### Starting the generated app
 
